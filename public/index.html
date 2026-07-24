@@ -65,6 +65,12 @@ kbd{background:var(--surface);border:1px solid var(--border);border-radius:3px;p
     <button id="validateBtn">Validate</button>
     <button id="copyBtn">Copy</button>
     <button id="clearBtn">Clear</button>
+    <div id="replaceBar" style="display:none;align-items:center;gap:.25rem;margin-left:.5rem">
+      <input id="findInput" type="text" placeholder="Find" style="background:var(--surface);color:var(--text);border:1px solid var(--border);padding:.2rem .4rem;border-radius:4px;font-size:.75rem;width:100px">
+      <input id="replaceInput" type="text" placeholder="Replace" style="background:var(--surface);color:var(--text);border:1px solid var(--border);padding:.2rem .4rem;border-radius:4px;font-size:.75rem;width:100px">
+      <button id="doReplace" style="font-size:.72rem;padding:.2rem .5rem">Replace</button>
+    </div>
+    <button id="toggleReplace">⌘</button>
     <div class="indent-btns">
       <button data-spaces="2" class="active">2sp</button>
       <button data-spaces="4">4sp</button>
@@ -149,6 +155,17 @@ function copyToClipboard(){
   navigator.clipboard.writeText(text).then(function(){showToast('Copied!')}).catch(function(){setStatus('Copy failed','err')});
 }
 
+function doReplaceJSON(){
+  var findVal=$('findInput').value;var repVal=$('replaceInput').value;
+  if(!findVal)return setStatus('Enter text to find','err');
+  try{var obj=JSON.parse($('input').value.trim());
+    var formatted=JSON.stringify(obj,null,getIndent()).split(findVal).join(repVal);
+    $('output').innerHTML=syntaxHighlight(formatted);
+    setStatus('Done ('+byteCount(formatted)+' chars)','ok');
+    $('charCount').textContent=byteCount(formatted)+' chars';
+  }catch(e){setStatus('Invalid JSON: '+e.message,'err')}
+}
+
 function syntaxHighlight(json){
   return json.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')
     .replace(/"([^"\\]*(\\.[^"\\]*)*)"/g,'<span class="json-string">$1</span>')
@@ -167,6 +184,9 @@ function showToast(msg){var t=$('toast');t.textContent=msg;t.classList.add('show
 $('input').addEventListener('paste',function(){setTimeout(function(){
   $('inputInfo').textContent=$('input').value.length+' bytes'
 },10)});
+
+$('toggleReplace').addEventListener('click',function(){var b=$('replaceBar');b.style.display=b.style.display==='none'?'flex':'none'});
+$('doReplace').addEventListener('click',function(){formatJSON();doReplaceJSON()});
 })();
 </script>
 </body>
