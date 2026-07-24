@@ -7,6 +7,14 @@
 <meta name="description" content="Free online JSON formatter. Paste JSON to pretty print, minify, or validate. No server, no signup, runs entirely in your browser.">
 <meta name="keywords" content="json formatter,json pretty printer,json minifier,json validator,online json tool">
 <link rel="canonical" href="https://Sittichai9680.github.io/snapog/">
+<!-- Open Graph / Social -->
+<meta property="og:title" content="JSON Formatter Online — Free Pretty Print, Minify, Validate">
+<meta property="og:description" content="Free browser-based JSON formatter. Pretty print, minify, validate JSON. No server, no signup, no data leaves your device.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://Sittichai9680.github.io/snapog/">
+<meta name="twitter:card" content="summary">
+<!-- JSON-LD Schema for search engines -->
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"JSON Formatter Online","description":"Free online JSON formatter. Pretty print, minify, and validate JSON in your browser.","url":"https://Sittichai9680.github.io/snapog/","applicationCategory":"DeveloperApplication","operatingSystem":"Browser","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"browserRequirements":"Requires JavaScript"}</script>
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
 :root{--bg:#0d1117;--surface:#161b22;--border:#30363d;--text:#e6edf3;--muted:#8b949e;
@@ -50,6 +58,7 @@ kbd{background:var(--surface);border:1px solid var(--border);border-radius:3px;p
 <body>
 <header>
   <h1>JSON Formatter<span class="badge">free</span></h1>
+  <p style="font-size:.72rem;color:var(--muted);margin-left:.5rem;white-space:nowrap;max-width:320px;overflow:hidden;text-overflow:ellipsis;">Pretty print, minify, and validate JSON — runs entirely in your browser</p>
   <div class="toolbar">
     <button id="formatBtn" title="Ctrl+Enter">Pretty Print</button>
     <button id="minifyBtn">Minify</button>
@@ -74,6 +83,20 @@ kbd{background:var(--surface);border:1px solid var(--border);border-radius:3px;p
   </div>
 </div>
 <footer>Runs entirely in your browser &mdash; no data leaves your device. <kbd>Ctrl</kbd>+<kbd>Enter</kbd> to format.</footer>
+<!-- SEO content for search engines — visible, helpful -->
+<section style="max-width:640px;margin:1rem auto;padding:0 1rem;">
+  <h2 style="font-size:1.1rem;font-weight:600;margin-bottom:.5rem;">What is JSON Formatter?</h2>
+  <p style="font-size:.82rem;color:var(--muted);line-height:1.6;margin-bottom:.75rem;">Paste, pretty print, or minify JSON directly in your browser. No server, no signup, no data leaves your device. Ideal for developers working with APIs, config files, or any JSON data.</p>
+  <h3 style="font-size:.9rem;font-weight:600;margin-bottom:.25rem;">Features</h3>
+  <ul style="font-size:.8rem;color:var(--muted);line-height:1.7;padding-left:1.2rem;">
+    <li>Pretty print with customizable indentation (2/4 spaces or tabs)</li>
+    <li>Minify JSON to the smallest possible output</li>
+    <li>Validate JSON and get clear error messages</li>
+    <li>Syntax highlighting with color-coded types</li>
+    <li>One-click copy to clipboard</li>
+    <li>Works offline — everything runs locally</li>
+  </ul>
+</section>
 <div class="status ok" id="status">Ready</div>
 <div class="toast" id="toast"></div>
 <script>
