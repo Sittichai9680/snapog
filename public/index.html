@@ -58,6 +58,8 @@ kbd{background:var(--surface);border:1px solid var(--border);border-radius:3px;p
 <header>
   <h1>JSON Formatter<span class="badge">free</span></h1>
   <div class="toolbar">
+    <input type="file" id="fileInput" accept=".json,application/json" hidden>
+    <button id="uploadBtn" title="Open JSON file">Upload</button>
     <button id="formatBtn" title="Ctrl+Enter">Pretty Print</button>
     <button id="minifyBtn">Minify</button>
     <button id="validateBtn">Validate</button>
@@ -72,7 +74,7 @@ kbd{background:var(--surface);border:1px solid var(--border);border-radius:3px;p
 </header>
 <div class="main">
   <div class="panel">
-    <div class="label"><span>Input</span><span id="inputInfo"></span></div>
+    <div class="label"><span>Input</span><span id="inputInfo">Drop a .json file here</span></div>
     <textarea id="input" placeholder='Paste your JSON here...&#10;&#10;{"name":"example","count":42}' spellcheck="false"></textarea>
   </div>
   <div class="panel">
@@ -88,11 +90,15 @@ kbd{background:var(--surface);border:1px solid var(--border);border-radius:3px;p
 var $=function(id){return document.getElementById(id)};
 var indentType='spaces',indentValue=2;
 
-$('formatBtn').onclick=formatJSON;
-$('minifyBtn').onclick=minifyJSON;
-$('validateBtn').onclick=validateJSON;
-$('copyBtn').onclick=copyToClipboard;
-$('clearBtn').onclick=function(){$('input').value='';$('output').innerHTML='';setStatus('Cleared','ok')};
+$('uploadBtn').onclick=function(){$('fileInput').click()};
+$('fileInput').onchange=function(){if(this.files[0])loadFile(this.files[0]);this.value=''};
+
+var ta=$('input');
+ta.ondragover=function(e){e.preventDefault();ta.style.outline='2px dashed var(--accent)'};
+ta.ondragleave=function(){ta.style.outline=''};
+ta.ondrop=function(e){e.preventDefault();ta.style.outline='';if(e.dataTransfer.files[0])loadFile(e.dataTransfer.files[0])};
+
+function loadFile(f){var r=new FileReader();r.onload=function(){$('input').value=r.result;setStatus('Loaded: '+f.name,'ok')};r.readAsText(f)}
 
 document.querySelectorAll('.indent-btns button').forEach(function(b){
   b.onclick=function(){
