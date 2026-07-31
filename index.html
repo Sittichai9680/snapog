@@ -1,193 +1,376 @@
-<!DOCTYPE html>
-<html lang="en">
+<!doctype html>
+<html lang="en" data-theme="dark">
 <head>
-<meta charset="UTF-8">
+<meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>JSON Formatter Online — Pretty Print, Minify, Validate</title>
-<meta name="description" content="Free online JSON formatter. Paste JSON to pretty print, minify, or validate. No server, no signup, runs entirely in your browser.">
-<meta name="keywords" content="json formatter,json pretty printer,json minifier,json validator,online json tool">
-<style>
-*{margin:0;padding:0;box-sizing:border-box}
-:root{--bg:#0d1117;--surface:#161b22;--border:#30363d;--text:#e6edf3;--muted:#8b949e;
---accent:#58a6ff;--success:#3fb950;--error:#f85149;--key:#79c0ff;--string:#a5d6ff;
---number:#d2a8ff;--bool:#ffa657;--null:#8b949e}
-body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen,sans-serif;
-background:var(--bg);color:var(--text);height:100vh;display:flex;flex-direction:column}
-header{padding:.75rem 1.5rem;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:.75rem;flex-shrink:0}
-h1{font-size:1.15rem;font-weight:600;white-space:nowrap}
-.badge{font-size:.6rem;background:var(--accent);color:#fff;padding:2px 6px;border-radius:4px;font-weight:700;text-transform:uppercase}
-.toolbar{display:flex;gap:.35rem;margin-left:auto;flex-wrap:wrap;align-items:center}
-button{background:var(--surface);color:var(--text);border:1px solid var(--border);
-padding:.3rem .7rem;border-radius:6px;cursor:pointer;font-size:.78rem;font-weight:500;transition:all .15s}
-button:hover{border-color:var(--accent);background:#1c2333}
-.indent-btns{display:flex;gap:.2rem;margin-left:.25rem}
-.indent-btns button{padding:.15rem .45rem;font-size:.7rem}
-.indent-btns button.active{background:var(--accent);border-color:var(--accent);color:#fff}
-.main{flex:1;display:flex;overflow:hidden}
-.panel{flex:1;display:flex;flex-direction:column;min-width:0}
-.label{padding:.4rem 1rem;background:var(--surface);border-bottom:1px solid var(--border);
-font-size:.7rem;color:var(--muted);text-transform:uppercase;letter-spacing:.05em;display:flex;justify-content:space-between;align-items:center}
-textarea{flex:1;width:100%;background:var(--bg);color:var(--text);border:none;
-padding:.75rem 1rem;font-family:"SF Mono",Monaco,Menlo,monospace;font-size:.82rem;
-resize:none;outline:none;line-height:1.6;tab-size:2}
-textarea::placeholder{color:var(--muted)}
-#output{flex:1;padding:.75rem 1rem;font-family:"SF Mono",Monaco,Menlo,monospace;font-size:.82rem;
-line-height:1.6;white-space:pre-wrap;word-break:break-all;overflow-y:auto;cursor:text;user-select:text}
-.status{padding:.3rem 1rem;font-size:.72rem;border-top:1px solid var(--border);flex-shrink:0}
-.status.ok{color:var(--success)}.status.err{color:var(--error)}
-.toast{position:fixed;bottom:1.5rem;left:50%;transform:translateX(-50%);background:var(--success);
-color:#fff;padding:.4rem 1rem;border-radius:6px;font-size:.8rem;opacity:0;
-transition:opacity .2s;pointer-events:none;z-index:100}
-.toast.show{opacity:1}
-@media(max-width:768px){.main{flex-direction:column}}
-.json-key{color:var(--key)}.json-string{color:var(--string)}.json-number{color:var(--number)}
-.json-boolean{color:var(--bool)}.json-null{color:var(--null)}
-footer{text-align:center;padding:.5rem;color:var(--muted);font-size:.7rem;border-top:1px solid var(--border)}
-kbd{background:var(--surface);border:1px solid var(--border);border-radius:3px;padding:0 4px;font-size:.75em;font-family:inherit}
-</style>
-<link rel="canonical" href="https://sittichai9680.github.io/snapog/">
-<meta property="og:title" content="JSON Formatter Online — Free Pretty Print, Minify, Validate">
-<meta property="og:description" content="Free browser-based JSON formatter. Pretty print, minify, validate JSON. No server, no signup, no data leaves your device.">
+<title>SnapOG — Open Graph image generator</title>
+<meta name="description" content="Generate 1200×630 Open Graph images in your browser. Free, no API key, no signup, no backend.">
 <meta property="og:type" content="website">
+<meta property="og:title" content="SnapOG — Open Graph image generator">
+<meta property="og:description" content="Generate 1200×630 Open Graph images in your browser. Free, no API key, no signup, no backend.">
 <meta property="og:url" content="https://sittichai9680.github.io/snapog/">
+<meta property="og:image" content="https://sittichai9680.github.io/snapog/og-card.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="SnapOG — Open Graph image generator">
+<meta name="twitter:description" content="Generate 1200×630 Open Graph images in your browser. Free, no API key, no signup.">
+<meta name="twitter:image" content="https://sittichai9680.github.io/snapog/og-card.png">
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"WebApplication","name":"JSON Formatter Online","url":"https://sittichai9680.github.io/snapog/","applicationCategory":"DeveloperApplication","offers":{"@type":"Offer","price":"0"},"description":"Free browser-based JSON formatter. Pretty print, minify, validate JSON."}
+{"@context":"https://schema.org","@type":"WebApplication","name":"SnapOG","description":"Open Graph image generator. Create 1200x630 OG preview images in the browser - no API key, no signup, no backend.","applicationCategory":"DeveloperApplication","operatingSystem":"Any","browserRequirements":"Requires JavaScript","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"url":"https://sittichai9680.github.io/snapog/"}
 </script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#0E0E10; --panel:#16161A; --panel-2:#1C1C22; --hair:#2A2A30;
+    --amber:#E8A33D; --amber-dim:#8a5f24; --text:#E7E3DA; --muted:#7C7A73;
+    --paper:#F5F1E8; --serif:'Instrument Serif',Georgia,serif;
+    --mono:'JetBrains Mono',ui-monospace,monospace; --sans:system-ui,-apple-system,sans-serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{background:var(--ink);color:var(--text);font-family:var(--sans);line-height:1.5;-webkit-font-smoothing:antialiased}
+  a{color:var(--amber);text-decoration:none}
+  ::selection{background:var(--amber);color:var(--ink)}
+
+  .top{display:flex;align-items:center;justify-content:space-between;
+       padding:16px 24px;border-bottom:1px solid var(--hair);font-family:var(--mono);font-size:12px;letter-spacing:.02em}
+  .top .mark{font-family:var(--serif);font-size:22px;letter-spacing:-.01em;margin:0;font-weight:400}
+  .top .mark b{color:var(--amber)}
+  .top .meta{color:var(--muted)}
+
+  main{max-width:1180px;margin:0 auto;padding:32px 24px 80px}
+  .layout{display:grid;grid-template-columns:360px 1fr;gap:40px;align-items:start}
+  @media(max-width:880px){.layout{grid-template-columns:1fr;gap:28px}}
+
+  /* form / darkroom control panel */
+  .panel{background:var(--panel);border:1px solid var(--hair);border-radius:2px}
+  .panel-h{font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;
+           color:var(--muted);padding:14px 16px;border-bottom:1px solid var(--hair);
+           display:flex;justify-content:space-between}
+  .panel-h .dot{width:7px;height:7px;border-radius:50%;background:var(--amber);box-shadow:0 0 8px var(--amber)}
+  .panel-b{padding:16px;display:flex;flex-direction:column;gap:16px}
+
+  label{display:flex;flex-direction:column;gap:6px;font-family:var(--mono);font-size:11px;
+        letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+  input,select,textarea{background:var(--ink);border:1px solid var(--hair);border-radius:2px;
+        color:var(--text);font-family:var(--sans);font-size:15px;padding:10px 12px;width:100%;outline:none}
+  input:focus,select:focus,textarea:focus{border-color:var(--amber)}
+  textarea{resize:vertical;min-height:60px}
+  .row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+
+  .seg{display:flex;border:1px solid var(--hair);border-radius:2px;overflow:hidden}
+  .seg button{flex:1;background:var(--ink);border:0;color:var(--muted);font-family:var(--mono);
+        font-size:12px;letter-spacing:.06em;text-transform:uppercase;padding:9px 0;cursor:pointer}
+  .seg button[aria-pressed="true"]{background:var(--amber);color:var(--ink)}
+
+  .actions{display:flex;gap:10px;margin-top:4px}
+  .btn{flex:1;background:var(--amber);color:var(--ink);border:0;border-radius:2px;font-family:var(--mono);
+       font-size:13px;letter-spacing:.04em;text-transform:uppercase;padding:12px;cursor:pointer;font-weight:500}
+  .btn:hover{filter:brightness(1.08)}
+  .btn.ghost{background:transparent;color:var(--text);border:1px solid var(--hair)}
+
+  /* proof frame — the signature */
+  .proof{background:var(--panel);border:1px solid var(--hair);border-radius:2px;padding:18px}
+  .proof-frame{position:relative;border:1px solid var(--amber-dim);background:
+        repeating-linear-gradient(45deg,transparent 0 12px,rgba(232,163,61,.04) 12px 13px)}
+  .proof-frame canvas{display:block;width:100%;height:auto;aspect-ratio:1200/630}
+  .proof-meta{display:flex;justify-content:space-between;font-family:var(--mono);font-size:11px;
+        letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-top:12px}
+  .proof-meta b{color:var(--amber);font-weight:500}
+  .crop{position:absolute;inset:0;pointer-events:none}
+  .crop i{position:absolute;width:14px;height:14px;border:1px solid var(--amber)}
+  .crop i:nth-child(1){top:-1px;left:-1px;border-right:0;border-bottom:0}
+  .crop i:nth-child(2){top:-1px;right:-1px;border-left:0;border-bottom:0}
+  .crop i:nth-child(3){bottom:-1px;left:-1px;border-right:0;border-top:0}
+  .crop i:nth-child(4){bottom:-1px;right:-1px;border-left:0;border-top:0}
+
+  .urlbar{margin-top:14px;display:flex;gap:8px;align-items:center}
+  .urlbar code{flex:1;background:var(--ink);border:1px solid var(--hair);border-radius:2px;
+        font-family:var(--mono);font-size:11px;color:var(--muted);padding:10px;overflow:auto;white-space:nowrap}
+  .urlbar .btn{flex:0 0 auto}
+
+  .api{margin-top:48px;border-top:1px solid var(--hair);padding-top:28px}
+  .api h2{font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--amber);margin-bottom:14px}
+  .api pre{background:var(--panel);border:1px solid var(--hair);border-radius:2px;padding:16px;overflow:auto;
+        font-family:var(--mono);font-size:12.5px;color:var(--text);line-height:1.7}
+  .api pre .c{color:var(--muted)}
+  .api p{color:var(--muted);font-size:14px;margin-top:12px;max-width:62ch}
+
+  .pro{margin-top:48px;border-top:1px solid var(--hair);padding-top:28px;display:flex;flex-direction:column;align-items:flex-start;gap:14px}
+  .pro h2{font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--amber);margin:0}
+  .pro p.lead{color:var(--text);font-size:14px;max-width:54ch;margin:0}
+  .pro .btn{flex:0 0 auto;text-decoration:none;display:inline-block;padding:12px 22px}
+  .pro .btn:visited{color:var(--ink)}
+
+  .foot{font-family:var(--mono);font-size:11px;color:var(--muted);text-align:center;
+        padding:28px;border-top:1px solid var(--hair);letter-spacing:.04em}
+  .toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%) translateY(20px);
+        background:var(--amber);color:var(--ink);font-family:var(--mono);font-size:12px;letter-spacing:.04em;
+        padding:10px 18px;border-radius:2px;opacity:0;transition:opacity .2s,transform .2s;pointer-events:none;z-index:9}
+  .toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+  @media(prefers-reduced-motion:reduce){*{transition:none!important}}
+  :focus-visible{outline:2px solid var(--amber);outline-offset:1px}
+
+  /* ponytail: ?raw=1 — full-bleed 1200×630 card view, used for og-card.png capture */
+  body.raw .top,body.raw .api,body.raw .foot,body.raw .panel,
+  body.raw .proof-meta,body.raw .urlbar,body.raw .crop{display:none}
+  body.raw main{max-width:none;padding:0}
+  body.raw .layout{display:block;gap:0}
+  body.raw .proof{padding:0;background:none;border:0}
+  body.raw .proof-frame{border:0;background:none}
+  body.raw canvas{display:block;width:1200px;height:630px}
+</style>
 </head>
 <body>
-<header>
-  <h1>JSON Formatter<span class="badge">free</span></h1>
-  <div class="toolbar">
-    <input type="file" id="fileInput" accept=".json,application/json" hidden>
-    <button id="uploadBtn" title="Open JSON file">Upload</button>
-    <button id="formatBtn" title="Ctrl+Enter">Pretty Print</button>
-    <button id="minifyBtn">Minify</button>
-    <button id="validateBtn">Validate</button>
-    <button id="copyBtn">Copy</button>
-    <button id="clearBtn">Clear</button>
-    <div id="replaceBar" style="display:none;align-items:center;gap:.25rem;margin-left:.5rem">
-      <input id="findInput" type="text" placeholder="Find" style="background:var(--surface);color:var(--text);border:1px solid var(--border);padding:.2rem .4rem;border-radius:4px;font-size:.75rem;width:100px">
-      <input id="replaceInput" type="text" placeholder="Replace" style="background:var(--surface);color:var(--text);border:1px solid var(--border);padding:.2rem .4rem;border-radius:4px;font-size:.75rem;width:100px">
-      <button id="doReplace" style="font-size:.72rem;padding:.2rem .5rem">Replace</button>
-    </div>
-    <button id="toggleReplace">⌘</button>
-    <div class="indent-btns">
-      <button data-spaces="2" class="active">2sp</button>
-      <button data-spaces="4">4sp</button>
-      <button data-tabs>Tab</button>
-    </div>
-  </div>
-</header>
-<div class="main">
-  <div class="panel">
-    <div class="label"><span>Input</span><span id="inputInfo">Drop a .json file here</span></div>
-    <textarea id="input" placeholder='Paste your JSON here...&#10;&#10;{"name":"example","count":42}' spellcheck="false"></textarea>
-  </div>
-  <div class="panel">
-    <div class="label"><span>Output</span><span id="charCount"></span></div>
-    <div id="output"></div>
-  </div>
+<div class="top">
+  <h1 class="mark"><b>●</b> SnapOG</h1>
+  <div class="meta">client-side · no key · no backend</div>
 </div>
-<footer>Runs entirely in your browser &mdash; no data leaves your device. <kbd>Ctrl</kbd>+<kbd>Enter</kbd> to format.</footer>
-<div class="status ok" id="status">Ready</div>
-<div class="toast" id="toast"></div>
+
+<main>
+  <div class="layout">
+    <!-- control panel -->
+    <form class="panel" id="form" onsubmit="return false">
+      <div class="panel-h"><span>Exposure</span><span class="dot" aria-hidden="true"></span></div>
+      <div class="panel-b">
+        <label>Title<textarea id="title" maxlength="120" placeholder="Shipping Day One">Shipping Day One</textarea></label>
+        <label>Subtitle<textarea id="description" maxlength="200" placeholder="How we launched in a weekend">How we launched in a weekend</textarea></label>
+        <label>Domain<input id="domain" maxlength="60" placeholder="snapog.dev" value="snapog.dev"></label>
+        <label>Author<input id="author" maxlength="40" placeholder="Jane Doe" value="Jane Doe"></label>
+        <label>Tag<input id="tag" maxlength="24" placeholder="Launch"></label>
+        <label>Theme
+          <div class="seg" role="group" aria-label="Theme">
+            <button type="button" data-theme="dark" aria-pressed="true">Dark</button>
+            <button type="button" data-theme="light" aria-pressed="false">Light</button>
+          </div>
+        </label>
+        <div class="actions">
+          <button class="btn" type="button" id="download">Download PNG</button>
+          <button class="btn ghost" type="button" id="copy">Copy URL</button>
+        </div>
+      </div>
+    </form>
+
+    <!-- proof frame -->
+    <div class="proof">
+      <div class="proof-frame">
+        <span class="crop" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
+        <canvas id="og" width="1200" height="630"></canvas>
+      </div>
+      <div class="proof-meta">
+        <span>FRAME 01 · <b id="dim">1200×630</b></span>
+        <span>THEME: <b id="tmeta">DARK</b></span>
+        <span>RENDER: <b id="stat">READY</b></span>
+      </div>
+      <div class="urlbar">
+        <code id="url"></code>
+        <button class="btn ghost" type="button" id="copy2">Copy</button>
+      </div>
+    </div>
+  </div>
+
+  <section class="api">
+    <h2>URL API</h2>
+<pre><span class="c"># same params drive the page — share a link, get the image</span>
+https://sittichai9680.github.io/snapog/?title=Your+Title&amp;theme=light&amp;domain=site.com
+
+<span class="c"># params</span>
+title        required
+description  optional
+domain       optional
+author       optional
+tag          optional
+theme        dark | light  (default dark)</pre>
+    <p>Everything renders in your browser on an HTML canvas — no server, no API key, no rate limit. Bookmark the URL above to regenerate the exact card any time. Download the PNG and drop it into your static site's <code>&lt;meta og:image&gt;</code> — scrapers see a real image file, no JS, no infrastructure.</p>
+  </section>
+
+  <section class="pro">
+    <h2>Pro — hosted, batch, or API</h2>
+    <p class="lead">Need a hosted endpoint, batch export, or an API instead of a download? Each request opens a GitHub issue — that's the waitlist.</p>
+    <a class="btn" id="pro" href="https://github.com/Sittichai9680/snapog/issues/new?title=Pro%20request&body=%23%23%20What%20I%27m%20trying%20to%20do%0A%0A%23%23%20What%20I%27d%20pay%20for%0A%0A%23%23%20Volume%20%2F%20usage" target="_blank" rel="noopener">Open a request</a>
+  </section>
+</main>
+
+<div class="foot">SnapOG · drawn in the browser · 1200×630 PNG</div>
+<div class="toast" id="toast">Copied</div>
+
 <script>
-(function(){
-var $=function(id){return document.getElementById(id)};
-var indentType='spaces',indentValue=2;
+const $ = id => document.getElementById(id);
+const canvas = $('og'), ctx = canvas.getContext('2d');
+const W = 1200, H = 630;
+let theme = 'dark';
+if(new URLSearchParams(location.search).get('raw')==='1') document.body.classList.add('raw');
 
-$('uploadBtn').onclick=function(){$('fileInput').click()};
-$('fileInput').onchange=function(){if(this.files[0])loadFile(this.files[0]);this.value=''};
+const C = {
+  dark:  { bg:'#0E0E10', panel:'#16161A', hair:'#2A2A30', text:'#F2EEE5', muted:'#7C7A73', amber:'#E8A33D', paper:'#0E0E10' },
+  light: { bg:'#F5F1E8', panel:'#EAE4D6', hair:'#D8D1BF', text:'#1A1A1E', muted:'#7A7568', amber:'#B5731E', paper:'#F5F1E8' }
+};
 
-var ta=$('input');
-ta.ondragover=function(e){e.preventDefault();ta.style.outline='2px dashed var(--accent)'};
-ta.ondragleave=function(){ta.style.outline=''};
-ta.ondrop=function(e){e.preventDefault();ta.style.outline='';if(e.dataTransfer.files[0])loadFile(e.dataTransfer.files[0])};
-
-function loadFile(f){var r=new FileReader();r.onload=function(){$('input').value=r.result;setStatus('Loaded: '+f.name,'ok')};r.readAsText(f)}
-
-document.querySelectorAll('.indent-btns button').forEach(function(b){
-  b.onclick=function(){
-    document.querySelectorAll('.indent-btns button').forEach(function(x){x.classList.remove('active')});
-    b.classList.add('active');
-    if(b.dataset.tabs){indentType='tabs'}else{indentType='spaces';indentValue=parseInt(b.dataset.spaces)}
+function draw(){
+  const p = C[theme];
+  const v = {
+    title: $('title').value.trim() || 'Untitled',
+    description: $('description').value.trim(),
+    domain: $('domain').value.trim(),
+    author: $('author').value.trim(),
+    tag: $('tag').value.trim()
   };
-});
 
-function getIndent(){return indentType==='tabs'?'\t':Array(indentValue+1).join(' ')}
+  ctx.fillStyle = p.bg; ctx.fillRect(0,0,W,H);
 
-$('input').addEventListener('keydown',function(e){
-  if((e.ctrlKey||e.metaKey)&&e.key==='Enter'){e.preventDefault();formatJSON()}
-  if(e.key==='Tab'&&!e.ctrlKey){
-    e.preventDefault();
-    var ta=e.target,s=ta.selectionStart,en=ta.selectionEnd;
-    ta.value=ta.value.substring(0,s)+getIndent()+ta.value.substring(en);
-    ta.selectionStart=ta.selectionEnd=s+(indentType==='tabs'?1:indentValue);
+  // subtle grid — proof-sheet texture
+  ctx.strokeStyle = theme==='dark' ? 'rgba(232,163,61,.05)' : 'rgba(181,115,30,.06)';
+  ctx.lineWidth = 1;
+  for(let x=0;x<=W;x+=40){ctx.beginPath();ctx.moveTo(x,0);ctx.lineTo(x,H);ctx.stroke();}
+  for(let y=0;y<=H;y+=40){ctx.beginPath();ctx.moveTo(0,y);ctx.lineTo(W,y);ctx.stroke();}
+
+  // left accent rule
+  ctx.fillStyle = p.amber; ctx.fillRect(72,72,4,486);
+
+  // domain eyebrow
+  ctx.font = '500 22px "JetBrains Mono", monospace';
+  ctx.fillStyle = p.muted;
+  ctx.textBaseline = 'top';
+  if(v.domain) ctx.fillText(fit(ctx, v.domain.toUpperCase(), 600), 100, 72); // ponytail: domain budget 600px — URL API bypasses form maxlength=60; unbounded it overflowed the canvas edge (silent clip) and collided with the tag pill on the same y=72 baseline. 600px ends at x=700, left of any realistic pillX (≈W-72-tw). Same data-loss class as title/description guards.
+
+  // tag pill
+  if(v.tag){
+    ctx.font = '500 20px "JetBrains Mono", monospace';
+    const tag = fit(ctx, v.tag.toUpperCase(), 380); // ponytail: corner-pill budget, not full-width — URL API bypasses the form's maxlength=42; a 990 cap let a ?tag=… giant span the canvas and collide with the domain eyebrow on the same line
+    const tw = ctx.measureText(tag).width;
+    const px=18, py=10, pillX=W-72-tw-px*2;
+    ctx.fillStyle = p.amber;
+    roundRect(pillX, 72, tw+px*2, 36, 2); ctx.fill();
+    ctx.fillStyle = theme==='dark'?'#0E0E10':'#F5F1E8';
+    ctx.fillText(tag, pillX+px, 80);
   }
-});
 
-function formatJSON(){
-  var raw=$('input').value.trim();if(!raw){setStatus('Nothing to format','err');return}
-  try{var obj=JSON.parse(raw);var formatted=JSON.stringify(obj,null,getIndent());
-    $('output').innerHTML=syntaxHighlight(formatted);
-    setStatus('Formatted ('+byteCount(formatted)+' chars)','ok');
-    $('charCount').textContent=byteCount(formatted)+' chars';
-    updateInputInfo(raw.length);
-  }catch(e){setStatus('Invalid JSON: '+e.message,'err')}
+  // title — Instrument Serif, wraps to max 3 lines
+  ctx.fillStyle = p.text;
+  const maxT = 980;
+  ctx.font = '88px "Instrument Serif", Georgia, serif';
+  const lines = wrap(ctx, v.title, maxT);
+  const overflow = lines.length > 3;
+  if(overflow){
+    // ponytail: ellipsis-truncate vs auto-shrink — fixed composition is the product's identity
+    let l3 = lines[2];
+    while(l3.length && ctx.measureText(l3 + '…').width > maxT) l3 = l3.slice(0,-1);
+    lines[2] = l3 + '…';
+  }
+  let ty = 150;
+  lines.slice(0,3).forEach(l => { ctx.fillText(l, 96, ty); ty += 92; });
+
+  // description
+  if(v.description){
+    ctx.fillStyle = p.muted;
+    ctx.font = '30px "Instrument Serif", Georgia, serif';
+    const dlines = wrap(ctx, v.description, maxT);
+    if(dlines.length > 2){
+      let l2 = dlines[1];
+      while(l2.length && ctx.measureText(l2 + '…').width > maxT) l2 = l2.slice(0,-1);
+      dlines[1] = l2 + '…';
+    }
+    let dy = ty + 8;
+    dlines.slice(0,2).forEach(l => { ctx.fillText(l, 100, dy); dy += 38; });
+  }
+
+  // author footer
+  ctx.fillStyle = p.muted;
+  ctx.font = '500 20px "JetBrains Mono", monospace';
+  if(v.author) ctx.fillText('— ' + v.author, 96, H-72);
+
+  // frame ticks bottom-right
+  ctx.fillStyle = p.amber;
+  ctx.font = '500 18px "JetBrains Mono", monospace';
+  ctx.fillText('1200×630', W-160, H-72);
+
+  updateUrl(v);
 }
 
-function minifyJSON(){
-  var raw=$('input').value.trim();if(!raw){setStatus('Nothing to minify','err');return}
-  try{var obj=JSON.parse(raw);var m=JSON.stringify(obj);
-    $('output').textContent=m;setStatus('Minified ('+byteCount(m)+' chars)','ok');
-    $('charCount').textContent=byteCount(m)+' chars';updateInputInfo(raw.length);
-  }catch(e){setStatus('Invalid JSON: '+e.message,'err')}
+function wrap(ctx, text, maxW){
+  const words = text.split(/\s+/); const lines=[]; let line='';
+  for(const w of words){
+    const t = line? line+' '+w : w;
+    if(ctx.measureText(t).width > maxW && line){ lines.push(line); line=w; }
+    else line = t;
+  }
+  if(line) lines.push(line);
+  return lines;
+}
+// single-token fit: no word-wrap, ellipsis-truncate to width (tags / long URLs)
+function fit(ctx, text, maxW){
+  if(ctx.measureText(text).width <= maxW) return text;
+  let s = text;
+  while(s.length && ctx.measureText(s + '…').width > maxW) s = s.slice(0,-1);
+  return s + '…';
+}
+function roundRect(x,y,w,h,r){
+  ctx.beginPath();
+  ctx.moveTo(x+r,y); ctx.arcTo(x+w,y,x+w,y+h,r); ctx.arcTo(x+w,y+h,x,y+h,r);
+  ctx.arcTo(x,y+h,x,y,r); ctx.arcTo(x,y,x+w,y,r); ctx.closePath();
 }
 
-function validateJSON(){
-  var raw=$('input').value.trim();if(!raw){setStatus('Nothing to validate','err');return}
-  try{JSON.parse(raw);setStatus('Valid JSON','ok')}
-  catch(e){setStatus('Invalid JSON: '+e.message,'err')}
+function updateUrl(v){
+  const params = new URLSearchParams();
+  if(v.title) params.set('title', v.title);
+  if(v.description) params.set('description', v.description);
+  if(v.domain && v.domain!=='snapog.dev') params.set('domain', v.domain);
+  if(v.author && v.author!=='Jane Doe') params.set('author', v.author);
+  if(v.tag) params.set('tag', v.tag);
+  if(theme!=='dark') params.set('theme', theme);
+  $('url').textContent = location.origin+location.pathname+'?'+params;
 }
 
-function copyToClipboard(){
-  var text=$('output').innerText;if(!text)return setStatus('Nothing to copy','err');
-  navigator.clipboard.writeText(text).then(function(){showToast('Copied!')}).catch(function(){setStatus('Copy failed','err')});
+function readParams(){
+  const q = new URLSearchParams(location.search);
+  if(q.get('title')) $('title').value = q.get('title');
+  if(q.get('description')) $('description').value = q.get('description');
+  if(q.get('domain')) $('domain').value = q.get('domain');
+  if(q.get('author')) $('author').value = q.get('author');
+  if(q.get('tag')) $('tag').value = q.get('tag');
+  const t = q.get('theme');
+  if(t==='light'||t==='dark') setTheme(t);
 }
 
-function doReplaceJSON(){
-  var findVal=$('findInput').value;var repVal=$('replaceInput').value;
-  if(!findVal)return setStatus('Enter text to find','err');
-  try{var obj=JSON.parse($('input').value.trim());
-    var formatted=JSON.stringify(obj,null,getIndent()).split(findVal).join(repVal);
-    $('output').innerHTML=syntaxHighlight(formatted);
-    setStatus('Done ('+byteCount(formatted)+' chars)','ok');
-    $('charCount').textContent=byteCount(formatted)+' chars';
-  }catch(e){setStatus('Invalid JSON: '+e.message,'err')}
+function setTheme(t){
+  theme = t;
+  document.documentElement.dataset.theme = t;
+  document.querySelectorAll('.seg button').forEach(b => b.setAttribute('aria-pressed', b.dataset.theme===t));
+  $('tmeta').textContent = t.toUpperCase();
+  draw();
 }
 
-function syntaxHighlight(json){
-  return json.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')
-    .replace(/"([^"\\]*(\\.[^"\\]*)*)"/g,'<span class="json-string">$1</span>')
-    .replace(/\b(true|false)\b/g,'<span class="json-boolean">$1</span>')
-    .replace(/\b(null)\b/g,'<span class="json-null">$1</span>')
-    .replace(/\b(-?\d+\.?\d*(?:[eE][+-]?\d+)?)\b/g,'<span class="json-number">$1</span>')
-    .replace(/^(\s*)([^{}\[\]"]+)\s*:/gm,'$1<span class="json-key">$2</span>:');
+function toast(msg){
+  const el = $('toast'); el.textContent = msg; el.classList.add('show');
+  clearTimeout(el._t); el._t = setTimeout(()=>el.classList.remove('show'), 1600);
+}
+function copyUrl(){
+  navigator.clipboard.writeText($('url').textContent).then(()=>toast('URL copied'));
+}
+function download(){
+  $('stat').textContent='WRITE';
+  const a = document.createElement('a');
+  a.download = 'og-' + ($('title').value.trim()||'image').toLowerCase().replace(/[^a-z0-9]+/g,'-').slice(0,40) + '.png';
+  a.href = canvas.toDataURL('image/png');
+  a.click();
+  setTimeout(()=>$('stat').textContent='READY', 600);
+  toast('PNG downloaded');
 }
 
-function setStatus(msg,type){var s=$('status');s.textContent=msg;s.className='status '+type}
-function byteCount(s){try{return new Blob([s]).size}catch(e){return s.length}}
-function updateInputInfo(len){$('inputInfo').textContent=len?len+' bytes':''}
-function showToast(msg){var t=$('toast');t.textContent=msg;t.classList.add('show');
-  setTimeout(function(){t.classList.remove('show')},1500)}
+['title','description','domain','author','tag'].forEach(id => $(id).addEventListener('input', draw));
+document.querySelectorAll('.seg button').forEach(b => b.addEventListener('click', ()=>setTheme(b.dataset.theme)));
+$('download').addEventListener('click', download);
+$('copy').addEventListener('click', copyUrl);
+$('copy2').addEventListener('click', copyUrl);
 
-$('input').addEventListener('paste',function(){setTimeout(function(){
-  $('inputInfo').textContent=$('input').value.length+' bytes'
-},10)});
-
-$('toggleReplace').addEventListener('click',function(){var b=$('replaceBar');b.style.display=b.style.display==='none'?'flex':'none'});
-$('doReplace').addEventListener('click',function(){formatJSON();doReplaceJSON()});
-})();
+readParams();
+// fonts must load before the serif renders crisply
+if(document.fonts && document.fonts.ready){
+  document.fonts.ready.then(draw);
+}
+draw();
 </script>
 </body>
 </html>
