@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://sittichai9680.github.io/snapog/sitemap.xml
